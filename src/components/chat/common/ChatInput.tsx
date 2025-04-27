@@ -4,13 +4,11 @@ import EmojiPicker from "../EmojiPicker";
 
 interface ChatInputProps {
   onSendMessage: (content: string) => void;
-  onEmojiSelect: (emoji: string) => void;
   className?: string;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
   onSendMessage,
-  onEmojiSelect,
   className = "",
 }) => {
   const [message, setMessage] = useState("");
@@ -25,7 +23,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
   const handleEmojiSelect = (emoji: string) => {
     setMessage((prevMessage) => prevMessage + emoji);
-    onEmojiSelect(emoji);
     setIsOpenEmojiPicker(false);
   }
 

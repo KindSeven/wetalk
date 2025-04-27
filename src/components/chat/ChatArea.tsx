@@ -225,27 +225,6 @@ const ChatArea: React.FC<ChatAreaProps> = ({ className = "" }) => {
     [currentChat, chatId, chatMessages.length, addMessage]
   );
 
-  // 处理表情选择
-  const handleEmojiSelect = useCallback(
-    (emoji: string) => {
-      if (currentChat && chatId) {
-        // 直接发送表情消息
-        const newMessage: Message = {
-          id: chatMessages.length + 1,
-          sender: "me",
-          content: emoji,
-          time: new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-        };
-
-        // 添加消息到状态管理
-        addMessage(chatId, newMessage);
-      }
-    },
-    [currentChat, chatId, chatMessages.length, addMessage]
-  );
 
   // 如果没有选择聊天对象，显示空状态
   if (!currentChat) {
@@ -274,7 +253,6 @@ const ChatArea: React.FC<ChatAreaProps> = ({ className = "" }) => {
       {/* 聊天输入区域 */}
       <ChatInput
         onSendMessage={handleSendMessage}
-        onEmojiSelect={handleEmojiSelect}
         className="flex-shrink-0"
       />
 
